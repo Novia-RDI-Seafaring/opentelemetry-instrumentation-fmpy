@@ -8,7 +8,7 @@ OpenTelemetry instrumentation for [FMPy](https://github.com/CATIA-Systems/FMPy),
 ## Installation
 
 ```bash
-pip install opentelemetry-instrumentation-fmpy
+uv add opentelemetry-instrumentation-fmpy
 ```
 
 ## Usage
@@ -36,13 +36,6 @@ FmpyInstrumentor().uninstrument()
 - Python 3.8+
 - uv (for development)
 
-## Example
-
-You can run the demo code showing how it is used.
-
-```bash
-uv run python demo/main.py <paht-to-fmu-file>
-```
 
 ## Citation
 
