@@ -1,0 +1,119 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "opentelemetry-instrumentation-fmpy"
+dynamic = ["version"]
+description = "OpenTelemetry instrumentation for FMPy"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.8"
+authors = [
+    { name = "OpenTelemetry Authors", email = "cncf-opentelemetry-contributors@lists.cncf.io" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "opentelemetry-api~=1.12",
+    "opentelemetry-instrumentation==0.48b0",
+    "opentelemetry-semantic-conventions == 0.48b0",
+    "prometheus-client>=0.21.1",
+    "requests>=2.32.4",
+    "wrapt >= 1.0.0, < 2.0.0",
+    "opentelemetry-exporter-prometheus>=0.48b0",
+    "opentelemetry-sdk ~= 1.12",
+    "opentelemetry-exporter-richconsole>=0.48b0",
+    "fmpy>=0.3.21",
+    "typer>=0.20.0",
+]
+
+[project.optional-dependencies]
+instruments = [
+    "fmpy>=0.3.0",
+]
+test = [
+    "opentelemetry-test-utils == 0.48b0",
+    "pytest",
+    "pytest-cov",
+    "fmpy >= 0.3.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Novia-RDI-Seafaring/opentelemetry-instrumentation-fmpy"
+
+[project.entry-points.opentelemetry_instrumentor]
+fmpy = "opentelemetry.instrumentation.fmpy:FmpyInstrumentor"
+
+[project.scripts]
+opentelemetry-instrument-fmpy = "opentelemetry.instrumentation.fmpy.cli:main"
+
+[tool.hatch.version]
+path = "src/opentelemetry/instrumentation/fmpy/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/tests",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/opentelemetry"]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--strict-config",
+    "--strict-markers",
+    "--cov=opentelemetry.instrumentation.fmpy",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=html:htmlcov",
+    "--cov-fail-under=95",
+]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["opentelemetry.instrumentation.fmpy"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.mypy]
+namespace_packages = true
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[dependency-groups]
+test = [
+    "pytest>=8.3.5",
+]
+
+[tool.pyright]
+extraPaths = ["./src", "./venv/lib/python3.x/site-packages"]
