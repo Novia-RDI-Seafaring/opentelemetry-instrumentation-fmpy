@@ -25,26 +25,26 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 dependencies = [
-    "opentelemetry-api~=1.12",
-    "opentelemetry-instrumentation==0.48b0",
-    "opentelemetry-semantic-conventions == 0.48b0",
+    "opentelemetry-api>=1.12,<2.0",
+    "opentelemetry-instrumentation>=0.48b0,<1.0",
+    "opentelemetry-semantic-conventions>=0.48b0,<1.0",
     "prometheus-client>=0.21.1",
     "requests>=2.32.4",
     "wrapt >= 1.0.0, < 2.0.0",
-    "opentelemetry-sdk ~= 1.12",
+    "opentelemetry-sdk>=1.12,<2.0",
 ]
 
 [project.optional-dependencies]
 instruments = [
-    "opentelemetry-exporter-prometheus>=0.48b0",
-    "opentelemetry-exporter-richconsole>=0.48b0",
+    "opentelemetry-exporter-prometheus>=0.48b0,<1.0",
+    "opentelemetry-exporter-richconsole>=0.48b0,<1.0",
     "fmpy>=0.3.21",
 ]
 cli = [
     "typer>=0.20.0",
 ]
 test = [
-    "opentelemetry-test-utils==0.48b0",
+    "opentelemetry-test-utils>=0.48b0,<1.0",
     "pytest>=8.3.5",
     "pytest-cov",
     "fmpy>=0.3.21",
@@ -115,8 +115,9 @@ line_length = 100
 dev = [
     "pytest>=8.3.5",
     "pytest-cov",
-    "opentelemetry-test-utils==0.48b0",
+    "opentelemetry-test-utils>=0.48b0,<1.0",
     "fmpy>=0.3.21",
+    "twine>=6.1.0",
 ]
 lint = [
     "black",
@@ -135,7 +136,7 @@ extraPaths = ["./src", "./venv/lib/python3.x/site-packages"]
 dev-dependencies = [
     "pytest>=8.3.5",
     "pytest-cov", 
-    "opentelemetry-test-utils==0.48b0",
+    "opentelemetry-test-utils>=0.48b0,<1.0",
     "fmpy>=0.3.21",
     "black",
     "isort",
