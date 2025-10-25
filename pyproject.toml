@@ -7,7 +7,7 @@ name = "opentelemetry-instrumentation-fmpy"
 dynamic = ["version"]
 description = "OpenTelemetry instrumentation for FMPy"
 readme = "README.md"
-license = "Apache-2.0"
+license = "MIT"
 requires-python = ">=3.8"
 authors = [
     { name = "OpenTelemetry Authors", email = "cncf-opentelemetry-contributors@lists.cncf.io" },
@@ -15,7 +15,7 @@ authors = [
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
+    "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
@@ -31,22 +31,23 @@ dependencies = [
     "prometheus-client>=0.21.1",
     "requests>=2.32.4",
     "wrapt >= 1.0.0, < 2.0.0",
-    "opentelemetry-exporter-prometheus>=0.48b0",
     "opentelemetry-sdk ~= 1.12",
-    "opentelemetry-exporter-richconsole>=0.48b0",
-    "fmpy>=0.3.21",
-    "typer>=0.20.0",
 ]
 
 [project.optional-dependencies]
 instruments = [
-    "fmpy>=0.3.0",
+    "opentelemetry-exporter-prometheus>=0.48b0",
+    "opentelemetry-exporter-richconsole>=0.48b0",
+    "fmpy>=0.3.21",
+]
+cli = [
+    "typer>=0.20.0",
 ]
 test = [
-    "opentelemetry-test-utils == 0.48b0",
-    "pytest",
+    "opentelemetry-test-utils==0.48b0",
+    "pytest>=8.3.5",
     "pytest-cov",
-    "fmpy >= 0.3.0",
+    "fmpy>=0.3.21",
 ]
 
 [project.urls]
@@ -111,9 +112,32 @@ profile = "black"
 line_length = 100
 
 [dependency-groups]
-test = [
+dev = [
     "pytest>=8.3.5",
+    "pytest-cov",
+    "opentelemetry-test-utils==0.48b0",
+    "fmpy>=0.3.21",
+]
+lint = [
+    "black",
+    "isort", 
+    "mypy",
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
 ]
 
 [tool.pyright]
 extraPaths = ["./src", "./venv/lib/python3.x/site-packages"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.5",
+    "pytest-cov", 
+    "opentelemetry-test-utils==0.48b0",
+    "fmpy>=0.3.21",
+    "black",
+    "isort",
+    "mypy",
+]
