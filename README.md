@@ -29,13 +29,6 @@ result = fmpy.simulate_fmu("model.fmu", stop_time=10.0)
 FmpyInstrumentor().uninstrument()
 ```
 
-
-## Configuration
-
-Environment variables:
-
-- `OTEL_PYTHON_FMPY_EXCLUDED_OPERATIONS`: Comma-separated list of FMPy operations to exclude from tracing
-
 ## Development
 
 ### Requirements
@@ -70,4 +63,4 @@ If you use this repository in your research or publications, please cite it usin
 
 ## License
 
-This project is licensed under the MIT - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
